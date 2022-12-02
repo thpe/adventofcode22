@@ -10,8 +10,11 @@ with open(sys.argv[1], 'r') as f:
       a = ord(l[0]) - ord('A')
       b = ord(l[2]) - ord('X')
 
+      # observation: after converting to number
+      # if b is one ahead I won, if b is one behind, or 2 ahead mod 3, then I have lost
       res = b - a
       res = res % 3
+
       score = b+1
       if (res == 0):
         score += 3
