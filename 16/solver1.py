@@ -96,6 +96,16 @@ def clean(adjunct):
                 cadjunct[k][1].pop(e)
     return cadjunct
 
+def historycost(adjunct, history):
+    tpress = 0
+    for valve in history:
+        print(valve)
+        press = adjunct[valve[0]][0]
+        time = 30 - valve[1]
+        tpress += time * press
+
+    return tpress
+
 def solve(adjunct, pos, cflow, tflow, time, history):
     print(f'visit {pos} {time} cflow {cflow} {history}')
     printallopen(adjunct)
@@ -111,7 +121,7 @@ def solve(adjunct, pos, cflow, tflow, time, history):
         openwait = 1
         history.append((pos,time))
     if isallopenv(adjunct):
-        print(f'all open ############# {history}')
+        print(f'all open ############# {history} {historycost(adjunct, history)}')
         if history[-1][0] == pos:
             history.pop()
         closev(adjunct, pos)
